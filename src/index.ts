@@ -3,8 +3,8 @@ import { json } from 'body-parser';
 import config from './core/config';
 import routes from './core/routes';
 import ConnectionDatabase from './core/database/connection.database';
+import { errorHandler } from './core/middleware/error-handler.middleware';
 // import routes from './routes/index';
-// import { errorHandler } from './middleware/errorHandler';
 // import config from './config';
 
 // DB connection
@@ -20,7 +20,7 @@ app.use('/' + config.prefix, routes);
 
 // Add error handling as the last middleware, just prior to our app.listen call.
 // This ensures that all errors are always handled.
-// app.use(errorHandler);
+app.use(errorHandler);
 
 // Have our API listen on the configured port.
 app.listen(config.port, () => {
