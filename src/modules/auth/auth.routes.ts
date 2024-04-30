@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { asyncHandler } from "../../core/middleware/async-handler.middleware";
-import AuthController from "./auth.controller";
+import login from './login/login.routes';
 
 const router = Router();
 
-router.post('/login', asyncHandler(AuthController.login));
+router.use("/login", login);
 
 export default router;

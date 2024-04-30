@@ -13,7 +13,10 @@ const config = {
     },
     // The basic API port and prefix configuration values are:
     port: process.env.PORT || 3000,
-    prefix: process.env.API_PREFIX || 'api'
+    prefix: process.env.API_PREFIX || 'api',
+    mongo: {
+        uri: process.env.MONGO_URI || 'mongodb://localhost:27017/quiz'
+    }
 };
 
 // Make our confirmation object available to the rest of our code.

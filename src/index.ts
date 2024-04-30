@@ -2,9 +2,13 @@ import express from 'express';
 import { json } from 'body-parser';
 import config from './core/config';
 import routes from './core/routes';
+import ConnectionDatabase from './core/database/connection.database';
 // import routes from './routes/index';
 // import { errorHandler } from './middleware/errorHandler';
 // import config from './config';
+
+// DB connection
+ConnectionDatabase.getInstance();
 
 // Instantiate an Express object.
 const app = express();
