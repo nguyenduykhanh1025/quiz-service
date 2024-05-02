@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import User from "../../user/user.model";
+import { SignupRequest } from "./sighup.request";
 
-// TODO: handle DTO
 class SignupController {
-  static create = async (req: Request, res: Response) => {
+  static create = async (req: SignupRequest, res: Response) => {
     const { email, fullName, password } = req.body;
 
     const user = new User({

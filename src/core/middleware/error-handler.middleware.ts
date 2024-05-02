@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { CustomError, IResponseError } from "../exceptions/custom-error";
+import HttpException, { ResponseError } from "../exceptions/http.exception";
 
 // TODO: try to improve this handler
 export function errorHandler(
@@ -9,7 +9,7 @@ export function errorHandler(
   next: NextFunction
 ) {
   console.error(err);
-  if (!(err instanceof CustomError)) {
+  if (!(err instanceof HttpException)) {
     res.status(500).send(
       {
         message: "Server error, please try again later",
@@ -18,10 +18,10 @@ export function errorHandler(
       }
     );
   } else {
-    const customError = err as CustomError;
+    const customError = err as HttpException;
     const response = {
       message: customError.message,
-    } as IResponseError;
+    } as ResponseError;
     // Check if there is more info to return.
     if (customError.additionalInfo)
       response.additionalInfo = customError.additionalInfo;
