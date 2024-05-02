@@ -2,10 +2,10 @@ import { IsEmail, IsString } from "class-validator";
 import { Request } from "express";
 
 export interface SignupRequest extends Request {
-  body: UserDto;
+  body: SignupDto;
 }
 
-export class UserDto {
+export class SignupDto {
   @IsEmail()
   @IsString()
   email: string;

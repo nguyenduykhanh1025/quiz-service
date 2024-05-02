@@ -1,18 +1,19 @@
-import { Request, Response } from "express";
-import User from "../../user/user.model";
+import { Response } from "express";
 import { SignupRequest } from "./sighup.request";
+import { EmailExistedException } from "./email-existed.exception";
+import User from "@quiz/modules/user/user.model";
+import { SignupService } from "./signup.service";
 
 class SignupController {
   static create = async (req: SignupRequest, res: Response) => {
-    const { email, fullName, password } = req.body;
+    const { email } = req.body;
+    const isExistedUser = await User.exists({ email });
 
-    const user = new User({
-      email,
-      fullName,
-      password,
-    });
+    if (isExistedUser) {
+      throw new EmailExistedException(email);
+    }
 
-    const savedUser = await user.save();
+    const savedUser = await SignupService.signup(req.body);
 
     res.send(savedUser);
   };

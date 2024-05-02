@@ -1,13 +1,13 @@
 import { plainToInstance } from "class-transformer";
 import { validate, ValidationError } from "class-validator";
 import { RequestHandler } from "express";
-import HttpException from "../exceptions/http.exception";
+import { HttpException } from "../exceptions/http.exception";
 
-function validationRequestMiddleware<T>(
+export function validationRequest(
   type: any,
   skipMissingProperties = false
 ): RequestHandler {
-  return (req, res, next) => {
+  return (req, _, next) => {
     validate(plainToInstance(type, req.body), { skipMissingProperties }).then(
       (errors: ValidationError[]) => {
         if (errors.length > 0) {
@@ -25,5 +25,3 @@ function validationRequestMiddleware<T>(
     );
   };
 }
-
-export default validationRequestMiddleware;

@@ -1,7 +1,7 @@
-class HttpException extends Error {
+export class HttpException extends Error {
   status: number;
   message: string;
-  additionalInfo: string;
+  additionalInfo?: string;
 
   constructor(status: number, message: string) {
     super(message);
@@ -14,5 +14,3 @@ export interface ResponseError {
   message: string;
   additionalInfo?: string;
 }
-
-export default HttpException;

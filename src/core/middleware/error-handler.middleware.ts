@@ -1,12 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import HttpException, { ResponseError } from "../exceptions/http.exception";
+import { HttpException, ResponseError } from "../exceptions/http.exception";
 
-// TODO: try to improve this handler
 export function errorHandler(
   err: any,
-  req: Request,
+  _: Request,
   res: Response,
-  next: NextFunction
+  __: NextFunction
 ) {
   console.error(err);
   if (!(err instanceof HttpException)) {
