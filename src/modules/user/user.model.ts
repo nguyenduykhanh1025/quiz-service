@@ -1,10 +1,11 @@
+import { Role } from "@quiz/core/enums";
 import mongoose from "mongoose";
 
 export interface IUser extends mongoose.Document {
   email: string;
   fullName: string;
   password: string;
-  token?: string;
+  role: Role;
   createdAt: Date;
   updatedAt: Date;
   comparePassword(password: string): Promise<boolean>;
@@ -26,6 +27,12 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+
+    role: {
+      type: String,
+      enum: Role,
+      default: Role.user,
     },
   },
   {

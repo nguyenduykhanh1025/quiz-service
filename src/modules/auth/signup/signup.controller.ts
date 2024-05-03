@@ -7,8 +7,8 @@ import { SignupService } from "./signup.service";
 class SignupController {
   static create = async (req: SignupRequest, res: Response) => {
     const { email } = req.body;
+    
     const isExistedUser = await User.exists({ email });
-
     if (isExistedUser) {
       throw new EmailExistedException(email);
     }
