@@ -1,5 +1,5 @@
-import { HttpException } from "@quiz/core/exceptions/http.exception";
 import { StatusCodes } from "http-status-codes";
+import { HttpException } from "./http-exception";
 
 export class UnauthorizedException extends HttpException {
   constructor() {

@@ -1,11 +1,11 @@
 import { Response } from "express";
 import { RefreshTokenRequest } from "./refresh-token.request";
-import RefreshToken from "./refresh-token.model";
-import { RefreshTokenNotFoundException } from "./refresh-token-not-found.exception";
+import RefreshToken, { REFRESH_TOKEN_COLLECTION_NAME } from "./refresh-token.model";
 import { RefreshTokenService } from "./refresh-token.service";
 import { RefreshTokenExpiredException } from "./refresh-token-expried.exception";
 import { LoginService } from "../login/login.service";
 import { RefreshTokenResponse } from "./refresh-token.response";
+import { NotFoundException } from "@quiz/core/exceptions";
 
 class RefreshTokenController {
   static create = async (req: RefreshTokenRequest, res: Response) => {
@@ -15,7 +15,7 @@ class RefreshTokenController {
       .exec();
 
     if (!refreshToken) {
-      throw new RefreshTokenNotFoundException(token);
+      throw new NotFoundException(REFRESH_TOKEN_COLLECTION_NAME, token);
     }
     if (RefreshTokenService.isExpired(refreshToken)) {
       throw new RefreshTokenExpiredException(token);

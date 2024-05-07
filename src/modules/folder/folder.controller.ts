@@ -1,12 +1,33 @@
 import { Response } from "express";
-import { FolderRequest } from "./folder.request";
-import Folder, { IFolder } from "./fodler.model";
+import { FolderCreateRequest } from "./folder-create.request";
+import { IFolder } from "./folder.model";
+import { TokenHelper } from "@quiz/core/helpers/token.helper";
+import { FolderService } from "./folder.service";
+import { BodyRequest } from "@quiz/core/models/body.request";
+import { FolderUpdateRequest } from "./folder-update.request";
+import { success } from "@quiz/core/helpers";
 
 class FolderController {
-  static create = async (req: FolderRequest, res: Response) => {
-    const folderPayload = req.body;
-    const savedFolder = await Folder.create(folderPayload);
-    res.send(savedFolder);
+  static create = async (
+    req: BodyRequest<FolderCreateRequest>,
+    res: Response
+  ) => {
+    const folderPayload = req.body as IFolder;
+    const token = TokenHelper.getFromReq(req);
+    const savedFolder = await FolderService.create(folderPayload, token);
+
+    res.send(success(savedFolder));
+  };
+
+  static update = async (
+    req: BodyRequest<FolderUpdateRequest>,
+    res: Response
+  ) => {
+    const folderPayload = req.body as IFolder;
+    const token = TokenHelper.getFromReq(req);
+    await FolderService.update(folderPayload, token);
+
+    res.send(success());
   };
 }
 

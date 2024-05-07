@@ -1,4 +1,4 @@
-import { HttpException } from "@quiz/core/exceptions/http.exception";
+import { HttpException } from "@quiz/core/exceptions";
 import { StatusCodes } from "http-status-codes";
 
 export class EmailExistedException extends HttpException {

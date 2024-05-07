@@ -1,4 +1,4 @@
-import mongoose, { HydratedDocument } from "mongoose";
+import mongoose from "mongoose";
 import { ILesson, LESSON_COLLECTION_NAME } from "../lesson/lesson.model";
 import {
   abstractionSchema,
@@ -31,13 +31,7 @@ const FolderSchema = new mongoose.Schema(
   }
 );
 
-FolderSchema.add(abstractionSchema)
-FolderSchema.pre<HydratedDocument<IFolder>>("save", function (next: Function) {
-  // this.createdBy = UserService.;
-  this.updatedBy = "alo1";
-
-  next();
-});
+FolderSchema.add(abstractionSchema);
 
 const Folder = mongoose.model<IFolder>(FOLDER_COLLECTION_NAME, FolderSchema);
 

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { HttpException, ResponseError } from "../exceptions/http.exception";
+import { HttpException } from "../exceptions";
+import { BodyResponse } from "../models";
 
 export function errorHandler(
   err: any,
@@ -11,17 +12,13 @@ export function errorHandler(
   if (!(err instanceof HttpException)) {
     res.status(500).send({
       message: "Server error, please try again later",
-      status: 500,
       additionalInfo: err,
     });
   } else {
     const customError = err as HttpException;
-    const response = {
+    const response: BodyResponse = {
       message: customError.message,
-    } as ResponseError;
-    // Check if there is more info to return.
-    if (customError.additionalInfo)
-      response.additionalInfo = customError.additionalInfo;
+    };
     res.status(customError.status).type("json").send(JSON.stringify(response));
   }
 }

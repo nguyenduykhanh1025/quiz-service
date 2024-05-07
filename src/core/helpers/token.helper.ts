@@ -19,8 +19,12 @@ export class TokenHelper {
     return jwt.verify(token, config.jwt.secret) as JwtPayload;
   }
 
-  static getUserIdFromReq(req: Request): number {
+  static getUserIdFromReq(req: Request): string {
     const token = this.getFromReq(req);
+    return this.verify(token).user_id;
+  }
+
+  static getUserIdFromToken(token: string): string {
     return this.verify(token).user_id;
   }
 }

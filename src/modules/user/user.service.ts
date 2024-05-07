@@ -1,13 +1,16 @@
-import User, { IUser } from "@quiz/modules/user/user.model";
-import { UserNotFoundException } from "./user-not-found.exception";
+import User, {
+  IUser,
+  USER_COLLECTION_NAME,
+} from "@quiz/modules/user/user.model";
 import { Request } from "express";
 import { TokenHelper } from "@quiz/core/helpers/token.helper";
+import { NotFoundException } from "@quiz/core/exceptions";
 
 export class UserService {
-  static findById = async (id: number): Promise<IUser> => {
+  static findById = async (id: string): Promise<IUser> => {
     const user = await User.findById(id).lean();
     if (!user) {
-      throw new UserNotFoundException(id);
+      throw new NotFoundException(USER_COLLECTION_NAME, id);
     }
 
     return user;
