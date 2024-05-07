@@ -22,7 +22,7 @@ class RefreshTokenController {
     }
 
     const { user } = refreshToken;
-    const newAccessToken = LoginService.createRefreshToken(user);
+    const newAccessToken = LoginService.createAccessToken(user);
     const newRefreshToken = await RefreshTokenService.create(user);
 
     await refreshToken.deleteOne()

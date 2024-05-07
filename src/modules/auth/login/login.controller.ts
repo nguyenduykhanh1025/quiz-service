@@ -21,7 +21,7 @@ class LoginController {
 
     this.#passwordValidation(password, user.password);
 
-    const accessToken = LoginService.createRefreshToken(user);
+    const accessToken = LoginService.createAccessToken(user);
     const refreshToken = await RefreshTokenService.create(user);
 
     const result: LoginResponse = {

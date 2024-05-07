@@ -7,15 +7,13 @@ export function errorHandler(
   res: Response,
   __: NextFunction
 ) {
-  console.error(err);
+  console.error("ERROR_HANDLER::", err);
   if (!(err instanceof HttpException)) {
-    res.status(500).send(
-      {
-        message: "Server error, please try again later",
-        status: 500,
-        additionalInfo: err
-      }
-    );
+    res.status(500).send({
+      message: "Server error, please try again later",
+      status: 500,
+      additionalInfo: err,
+    });
   } else {
     const customError = err as HttpException;
     const response = {

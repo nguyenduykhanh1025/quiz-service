@@ -11,6 +11,8 @@ export interface IUser extends mongoose.Document {
   comparePassword(password: string): Promise<boolean>;
 }
 
+export const USER_COLLECTION_NAME = "User";
+
 const UserSchema = new mongoose.Schema(
   {
     email: {
@@ -40,6 +42,6 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model<IUser>("User", UserSchema);
+const User = mongoose.model<IUser>(USER_COLLECTION_NAME, UserSchema);
 
 export default User;
