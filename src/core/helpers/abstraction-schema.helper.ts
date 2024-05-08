@@ -1,6 +1,7 @@
 import { TokenHelper } from "@quiz/core/helpers/token.helper";
 import { IAbstractionSchema } from "../models";
 
+// FIXME: these functions help us add `createdBy` and `updatedBy` info, but We still need to add it manually (in each services,..)
 export const withCreatedByAndUpdatedBy = (
   abstractionSchema: IAbstractionSchema,
   token: string

@@ -1,9 +1,11 @@
 import express from "express";
+import "reflect-metadata";
 import { json } from "body-parser";
 import config from "./core/config";
 import routes from "./core/routes";
 import ConnectionDatabase from "./core/database/connection.database";
 import { errorHandler } from "./core/middleware/error-handler.middleware";
+
 // import routes from './routes/index';
 // import config from './config';
 

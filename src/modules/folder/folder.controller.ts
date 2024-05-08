@@ -3,9 +3,9 @@ import { FolderCreateRequest } from "./folder-create.request";
 import { IFolder } from "./folder.model";
 import { TokenHelper } from "@quiz/core/helpers/token.helper";
 import { FolderService } from "./folder.service";
-import { BodyRequest } from "@quiz/core/models/body.request";
 import { FolderUpdateRequest } from "./folder-update.request";
 import { success } from "@quiz/core/helpers";
+import { BodyRequest } from "@quiz/core/models";
 
 class FolderController {
   static create = async (

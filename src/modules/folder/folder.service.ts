@@ -7,7 +7,6 @@ import { NotFoundException } from "@quiz/core/exceptions";
 import { UpdateWriteOpResult } from "mongoose";
 
 export class FolderService {
-  // FIXME: there is a way to remove token from passing!
   static async create(folder: IFolder, token: string): Promise<IFolder> {
     withCreatedByAndUpdatedBy(folder, token);
     return await Folder.create(folder);
