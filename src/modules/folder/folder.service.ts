@@ -12,10 +12,16 @@ export class FolderService {
     return await Folder.create(folder);
   }
 
-  static async update(folder: IFolder, token: string): Promise<UpdateWriteOpResult> {
-    await this.findById(folder.id);
+  static async update(folder: IFolder, token: string): Promise<IFolder> {
+    const { id } = folder;
     withUpdatedBy(folder, token);
-    return await Folder.updateOne({}, folder);
+
+    const savedFolder = await Folder.findByIdAndUpdate(id, folder);
+    if (!savedFolder) {
+      throw new NotFoundException(FOLDER_COLLECTION_NAME, id);
+    }
+
+    return savedFolder;
   }
 
   static findById = async (id: string): Promise<IFolder> => {

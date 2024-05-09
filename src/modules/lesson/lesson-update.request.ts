@@ -2,7 +2,10 @@ import { Type } from "class-transformer";
 import { IsString, ValidateNested } from "class-validator";
 import { TermCreateRequest } from "./term.request";
 
-export class LessonCreateRequest {
+export class LessonUpdateRequest {
+  @IsString()
+  id: string;
+
   @IsString()
   title: string;
 

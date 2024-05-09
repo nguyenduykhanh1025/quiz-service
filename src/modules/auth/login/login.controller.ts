@@ -4,8 +4,6 @@ import User from "@quiz/modules/user/user.model";
 import { EmailNotFoundException } from "./email-not-found.exception";
 import bcrypt from "bcrypt";
 import { UnauthorizedException } from "@quiz/core/exceptions";
-import jwt from "jsonwebtoken";
-import config from "@quiz/core/config";
 import { RefreshTokenService } from "../refresh-token/refresh-token.service";
 import { LoginResponse } from "./login.response";
 import { LoginService } from "./login.service";

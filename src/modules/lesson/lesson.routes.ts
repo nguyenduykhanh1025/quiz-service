@@ -3,6 +3,7 @@ import { authentication } from "@quiz/core/middleware/authentication.middleware"
 import { Router } from "express";
 import controller from "./lesson.controller";
 import { LessonCreateRequest } from "./lesson-create.request";
+import { LessonUpdateRequest } from "./lesson-update.request";
 
 const router = Router();
 
@@ -11,6 +12,13 @@ router.post(
   authentication,
   validationRequest(LessonCreateRequest),
   asyncHandler(controller.create)
+);
+
+router.put(
+  "",
+  authentication,
+  validationRequest(LessonUpdateRequest),
+  asyncHandler(controller.update)
 );
 
 export default router;
