@@ -1,9 +1,9 @@
 import { Response } from "express";
-import { FolderCreateRequest } from "./folder-create.request";
+import { FolderCreateRequest } from "./request/folder-create.request";
 import { IFolder } from "./folder.model";
 import { TokenHelper } from "@quiz/core/helpers/token.helper";
 import { FolderService } from "./folder.service";
-import { FolderUpdateRequest } from "./folder-update.request";
+import { FolderUpdateRequest } from "./request/folder-update.request";
 import { success } from "@quiz/core/helpers";
 import { BodyRequest } from "@quiz/core/models";
 

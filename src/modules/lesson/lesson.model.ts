@@ -1,12 +1,14 @@
-import { abstractionSchema, IAbstractionSchema } from "@quiz/core/models";
-import mongoose, { Schema, StringSchemaDefinition } from "mongoose";
+import abstractionSchemaWithDeleteLogic, {
+  IAbstractionSchemaWithDeleteLogic,
+} from "@quiz/core/models/abstraction-schema-with-delete-logic.model";
+import mongoose, { Schema } from "mongoose";
 
 export interface ITerm {
   key: string;
   definition: string;
 }
 
-export interface ILesson extends IAbstractionSchema {
+export interface ILesson extends IAbstractionSchemaWithDeleteLogic {
   title: string;
   description: string;
   school: string;
@@ -39,7 +41,7 @@ const LessonSchema = new mongoose.Schema(
   }
 );
 
-LessonSchema.add(abstractionSchema);
+LessonSchema.add(abstractionSchemaWithDeleteLogic);
 
 const Lesson = mongoose.model<ILesson>(LESSON_COLLECTION_NAME, LessonSchema);
 

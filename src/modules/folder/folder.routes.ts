@@ -1,9 +1,8 @@
 import { Router } from "express";
 import controller from "./folder.controller";
 import { asyncHandler, validationRequest } from "@quiz/core/middleware";
-import { FolderCreateRequest } from "./folder-create.request";
 import { authentication } from "@quiz/core/middleware/authentication.middleware";
-import { FolderUpdateRequest } from "./folder-update.request";
+import { FolderCreateRequest, FolderUpdateRequest } from "./request";
 
 const router = Router();
 

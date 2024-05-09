@@ -2,10 +2,13 @@ import { asyncHandler, validationRequest } from "@quiz/core/middleware";
 import { authentication } from "@quiz/core/middleware/authentication.middleware";
 import { Router } from "express";
 import controller from "./lesson.controller";
-import { LessonCreateRequest } from "./lesson-create.request";
-import { LessonUpdateRequest } from "./lesson-update.request";
+import { LessonCreateRequest, LessonUpdateRequest } from "./request";
 
 const router = Router();
+
+router.get("", authentication, asyncHandler(controller.all));
+
+router.get("/:id", authentication, asyncHandler(controller.get));
 
 router.post(
   "",
@@ -20,5 +23,7 @@ router.put(
   validationRequest(LessonUpdateRequest),
   asyncHandler(controller.update)
 );
+
+router.delete("/:id", authentication, asyncHandler(controller.delete));
 
 export default router;

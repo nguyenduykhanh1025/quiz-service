@@ -1,4 +1,4 @@
-import mongoose, { SchemaDefinitionProperty } from "mongoose";
+import mongoose from "mongoose";
 
 export interface IAbstractionSchema extends mongoose.Document {
   createdBy: string;
@@ -8,10 +8,10 @@ export interface IAbstractionSchema extends mongoose.Document {
 export const abstractionSchema = new mongoose.Schema({
   createdBy: {
     type: String,
-    required: true
+    required: true,
   },
   updatedBy: {
     type: String,
-    required: true
+    required: true,
   },
-})
+});
